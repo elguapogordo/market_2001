@@ -18,4 +18,8 @@ class MarketTest < Minitest::Test
     assert_equal "South Pearl Street Farmers Market", @market.name
   end
 
+  def test_it_has_vendors
+    assert_equal [], @market.vendors
+  end
+
 end
