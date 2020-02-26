@@ -32,4 +32,10 @@ class VendorTest < Minitest::Test
     assert_equal ({}), vendor.inventory
   end
 
+  def test_inventory_default_value_is_0
+    vendor = Vendor.new("Rocky Mountain Fresh")
+
+    assert_equal 0, vendor.inventory["Bananas"]
+  end
+
 end
