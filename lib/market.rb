@@ -5,7 +5,7 @@ class Market
   def initialize(name)
     @name = name
     @vendors = []
-    @inventory_hash = Hash.new do |hash, key|
+    @market_inventory = Hash.new do |hash, key|
       hash[key] = Hash.new { |hash, key| hash[key] = 0 }
     end
   end
@@ -23,17 +23,21 @@ class Market
   end
 
   def sorted_items_list
+    total_inventory
+    @market_inventory.find_all do |item, hash|
+
+    require 'pry'; binding.pry
+    end
   end
 
   def total_inventory
     vendors.each do |vendor|
       vendor.inventory.each do |item, qty|
-        @inventory_hash[item][:quantity] += qty
-        @inventory_hash[item][:vendors] = vendors_that_sell(item)
+        @market_inventory[item][:quantity] += qty
+        @market_inventory[item][:vendors] = vendors_that_sell(item)
       end
     end
-    @inventory_hash
+    @market_inventory
   end
-  # require 'pry'; binding.pry
 
 end
